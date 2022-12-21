@@ -1,4 +1,4 @@
-# Foobar
+# Freeflow
 
 **FreeFlow** is a Traffic light system that uses AI technology to control traffic lights and lowers traffic congestion.
 
