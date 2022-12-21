@@ -1,0 +1,26 @@
+.video {
+    column-count: 2;
+    columns: 30em;
+    justify-content: center;
+    padding: 0 20px;
+    margin-top: 1%;
+    margin-bottom: 8%;
+}
+@media only screen and (max-width: 920px)
+{
+    .video {
+	display: flex;
+	flex-wrap: wrap;
+    }
+}
+.video article {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+}
