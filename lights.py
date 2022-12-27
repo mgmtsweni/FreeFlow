@@ -21,51 +21,59 @@ The side with the bigger value would be chosen
 NSWE - North, South, West, East
 """
 
-N = northlane(5).count
-S = southlane(2).count
-W = westlane(3).count
-E = eastlane(4).count
+N = northlane(8).count
+S = southlane(4).count
+W = westlane(2).count
+E = eastlane(6).count
 
 chooseSide = laneSide(N, S, W, E).side()
-north = chooseSide[0]
-south = chooseSide[1]
-west = chooseSide[2]
-east = chooseSide[3]
-#print("last unsorted value", east)
-chooseSide.sort()
-lane2 = chooseSide[1]
-lane4 = chooseSide[3]
-#print("last sorted value", lane4)
 
+def countback(count):
+    while (count > 0):
+        print (count)
+        count = count - 1
+        sleep(0.5)
 
 def switches(index):
-    while True:
-        print(colored("Stop", 'red'))
-        sleep(2)
-        green(index)
-        print(colored("caution", 'yellow'))
-        sleep(2)
-        break 
-
-def green(index):
     print(colored("Go", 'green'))
-    lane4 = countdown(index, lane2).countback()
-    return (lane4)
-    #sleep(int(countlane))
+    countback(index)
+    print(colored("caution", 'yellow'))
+    sleep(2)
+    print(colored("Stop", 'red'))
+    sleep(2)
 
-while True:
-    if lane4 == north:
-        print("North lane")
-        switches(north)
+def north(N):
+    print(colored("North", 'white'), N)
+    switches(N)
+
+def south(S):
+    print(colored("south", 'white'), S)
+    switches(S)
     
-    elif lane4 == south:
-        print("South lane:")
-        switches(south)
+def west(W):
+    print(colored("west", 'white'), W)
+    switches(W)
+    
+def east(E):
+    print(colored("east", 'white'), E)
+    switches(E)
 
-    elif lane4 == west:
-        print("West lane")
-        switches(west)
- 
-    else:
-        print("East lane")
-        switches(east)
+def lights(chooseSide):
+    chooseSide.sort()
+    print(chooseSide)
+    while chooseSide[3] != 0:
+        if chooseSide[3] == chooseSide[0] and chooseSide[0] > 0:
+             chooseSide[0] = chooseSide[0] - 1
+        else:
+            if chooseSide[3] == N:
+                north(N)
+            if chooseSide[3] == S:
+                south(S)
+            if chooseSide[3] == W:
+                west(W)
+            if chooseSide[3] == E:
+                east(E)
+        chooseSide[3] = chooseSide[3] - 1
+        lights(chooseSide)
+
+lights(chooseSide)
