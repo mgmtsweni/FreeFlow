@@ -6,7 +6,7 @@
     margin-top: 1%;
     margin-bottom: 8%;
 }
-@media only screen and (max-width: 920px)
+@media only screen and (max-width: 520px)
 {
     .video {
 	display: flex;
@@ -19,8 +19,8 @@
     display: inline-block;
     max-width: 100%;
     height: auto;
-    padding: 20px;
-    margin: 20px;
-    border: 1px solid #FF5A5F;
+    padding: 70px;
+    margin-top: 10%;
+    border: 1px solid inherit;
     border-radius: 4px;
 }

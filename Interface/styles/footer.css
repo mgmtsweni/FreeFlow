@@ -1,6 +1,6 @@
 footer {
     position: fixed;
-    background: white;
+    background: #0c2d48;
     height: 60px;
     width: 100%;
     bottom: 0;
@@ -9,8 +9,11 @@ footer {
 footer p {
     position: absolute;
     text-align: center;
-    top: 10%;
-    bottom: 0;
+    top: 35%;
     right: 0;
     left: 0;
+    color: #b1d4e0;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
