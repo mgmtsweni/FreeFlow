@@ -4,33 +4,24 @@
 from time import sleep
 from vehiclecontrol import *
 from termcolor import colored
-from sys import argv
-
-"""
-N = northlane(int(argv[1])).count
-S = southlane(int(argv[2])).count
-W = westlane(int(argv[3])).count
-E = eastlane(int(argv[4])).count
+import sys
 
 
-The side with the bigger value would be chosen
-#note0# we need to compare each side to check if they're equal
-    if true then we close that side which was bigger and open the compered lane
-#note1# we need to decrease the lanes by half of the total in one lane
-#note2# if we have two lanes with the same number, we'll open them in the NSWE order
-NSWE - North, South, West, East
-"""
+argc = len(sys.argv) - 1
+if argc != 4:
+    print("Usage: ./lights [numbers of lanes in this other] \
+            <north> <south> <west> <east>")
+    sys.exit(1)
 
-N = northlane(8).count
-S = southlane(4).count
-W = westlane(2).count
-E = eastlane(6).count
+N = northlane(int(sys.argv[1])).count
+S = southlane(int(sys.argv[2])).count
+W = westlane(int(sys.argv[3])).count
+E = eastlane(int(sys.argv[4])).count
 
 chooseSide = laneSide(N, S, W, E).side()
 
 def countback(count):
     while (count > 0):
-        print (count)
         count = count - 1
         sleep(0.5)
 
@@ -42,37 +33,24 @@ def switches(index):
     print(colored("Stop", 'red'))
     sleep(2)
 
-def north(N):
-    print(colored("North", 'white'), N)
-    switches(N)
-
-def south(S):
-    print(colored("south", 'white'), S)
-    switches(S)
-    
-def west(W):
-    print(colored("west", 'white'), W)
-    switches(W)
-    
-def east(E):
-    print(colored("east", 'white'), E)
-    switches(E)
-
 def lights(chooseSide):
     chooseSide.sort()
-    print(chooseSide)
     while chooseSide[3] != 0:
         if chooseSide[3] == chooseSide[0] and chooseSide[0] > 0:
              chooseSide[0] = chooseSide[0] - 1
         else:
             if chooseSide[3] == N:
-                north(N)
+                print(colored("North", 'white'))
+                switches(N)
             if chooseSide[3] == S:
-                south(S)
+                print(colored("south", 'white'))
+                switches(S)
             if chooseSide[3] == W:
-                west(W)
+                print(colored("west", 'white'))
+                switches(W)
             if chooseSide[3] == E:
-                east(E)
+                print(colored("east", 'white'))
+                switches(E)
         chooseSide[3] = chooseSide[3] - 1
         lights(chooseSide)
 

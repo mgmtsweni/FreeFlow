@@ -7,6 +7,9 @@ class lanes:
     """Class to determine the number of cars in a lane"""
     def __init__(self, count):
         self.count = count
+    
+    def count(self):
+        return self.count
         """
         self.car = 4*car
         self.bike = 3*bike
@@ -47,42 +50,14 @@ class laneSide:
         self.south = south
         self.west = west
         self.east = east
-    
+
     def side(self):
         #Returns an array of the total number of cars in a lane
         lanes = [self.north, self.south, self.west, self.east]
         return lanes
-    
-    """def iteration(self):
-        lanes = [self.north, self.south, self.west, self.east]
-        for i in range(len(lanes)):
-            for j in range(i+1, len(lanes)):
-                if lanes[i] == lanes[j]:
-                    print("stoping bbecause", lanes[i], "and", lanes[j], "are the same")
-                else:
-                    return"""
 
-class countdown:
-    def __init__(self, count, lane2):
-        self.count = count
-        self.lane2 = lane2
-
-    def countback(self):
-        while (self.count > 0):
-            # print (self.count)
-            if self.count != self.lane2:
-                self.count = self.count - 1
-                sleep(1)
-            else:
-                print ("changing lanes")
-                break
-        return (self.count)
-
-
-class lanecmp:
-    """class to determine which lane to choose"""
-    def __init__(self, north, south, west, east):
-        self.north = north
-        self.south = south
-        self.west = west
-        self.east = east
+def countback(self):
+    while (self.count > 0):
+        print (self.count)
+        self.count = self.count - 1
+        sleep(1)
