@@ -1,0 +1,14 @@
+user management
+        users { "adds-delete-modify users}
+            admin(super-user) : passwords1
+            supervisor : passwords2
+            others : passwords3
+        }
+        street corners { "adds-delete-modify which corners to focus on"
+            fourway1 [link via video]
+            fourway2 [link via video]
+        }
+database
+        vehicles { "counted by specific time lapsed"
+            total count;
+        }
