@@ -1,51 +1,59 @@
 #!/usr/bin/python3
 from tkinter import *
+from tkinter import messagebox
 
 
 """functions"""
+
 
 def BreeSmall():
     """Cnr of Bree and Small"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
-    
-    heading2 = Label(streetframe, text='Cnr of Bree and Small', font=('bold', 25))
+
+    heading2 = Label(
+        streetframe, text='Cnr of Bree and Small', font=('bold', 25))
     heading2.place(x=280, y=80)
-    
+
     streetlabel = Label(adminframe, image=videohold, width=250, height=250)
     streetlabel.place(x=300, y=200)
+
 
 def BreeKruis():
     """Cnr of Small And Jeppe"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
-    
-    heading2 = Label(streetframe, text='Cnr of Small And Jeppe', font=('bold', 25))
+
+    heading2 = Label(
+        streetframe, text='Cnr of Small And Jeppe', font=('bold', 25))
     heading2.place(x=280, y=80)
-    
+
     streetlabel = Label(adminframe, image=videohold, width=250, height=250)
     streetlabel.place(x=300, y=200)
+
 
 def JeppeKruis():
     """Cnr of Bree and Kruis"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
-    
-    heading2 = Label(streetframe, text='Cnr of Bree and Kruis', font=('bold', 25))
+
+    heading2 = Label(
+        streetframe, text='Cnr of Bree and Kruis', font=('bold', 25))
     heading2.place(x=280, y=80)
-    
+
     streetlabel = Label(adminframe, image=videohold, width=250, height=250)
     streetlabel.place(x=300, y=200)
+
 
 def JeppeSmall():
     """Cnr of Kruis and Jeppe"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
-    heading2 = Label(streetframe, text='Cnr of Kruis and Jeppe', font=('bold', 25))
+    heading2 = Label(
+        streetframe, text='Cnr of Kruis and Jeppe', font=('bold', 25))
     heading2.place(x=280, y=80)
     streetlabel = Label(adminframe, image=videohold, width=250, height=250)
     streetlabel.place(x=300, y=200)
-
 
 
 def user_wall():
@@ -54,13 +62,14 @@ def user_wall():
     heading1 = Label(userframe, text='Interface', font=('bold', 25))
     heading1.place(x=370, y=50)
 
-    namelabel = Label(userframe, text='Intercections', bg='blue', font=('bold', 15))
+    namelabel = Label(userframe, text='Intercections',
+                      bg='blue', font=('bold', 15))
     namelabel.place(x=36, y=175)
     manEntry = Button(userframe, text='Cnr of Bree and Small', bd=0, cursor='hand2', font=('Arial Sans', 12, 'bold'),
                       activebackground='NavajoWhite3', activeforeground='brown1', command=BreeSmall)
     manEntry.place(x=36, y=210)
     manEntry = Button(userframe, text='Cnr of Small And Jeppe', bd=0, cursor='hand2', font=('Arial Sans', 12, 'bold'),
-                      activebackground='NavajoWhite3', activeforeground='brown1', command= JeppeSmall)
+                      activebackground='NavajoWhite3', activeforeground='brown1', command=JeppeSmall)
     manEntry.place(x=36, y=260)
     manEntry = Button(userframe, text='Cnr of Bree and Kruis', bd=0, cursor='hand2', font=('Arial Sans', 12, 'bold'),
                       activebackground='NavajoWhite3', activeforeground='brown1', command=BreeKruis)
@@ -71,69 +80,8 @@ def user_wall():
 
 
 def man_wall():
-    manframe = Frame(adminframe, width=830, height=656, bg='blue')
-    manframe.place(x=0, y=0)
-    heading1 = Label(manframe, text='manage users', font=('bold', 15))
-    heading1.place(x=370, y=50)
-
-    namelabel = Label(manframe, text='Employee Name',
-                      bg='blue', font=('bold', 15))
-    namelabel.place(x=36, y=155)
-    nameEntry = Entry(manframe, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
-                      bd=0, fg='black')
-    nameEntry.insert(0, '')
-    nameEntry.place(x=40, y=185)
-
-    usernamelabel = Label(manframe, text='Create Username',
-                          bg='blue', font=('bold', 15))
-    usernamelabel.place(x=36, y=235)
-    usernameEntry = Entry(manframe, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
-                          bd=0, fg='black')
-    usernameEntry.insert(0, '')
-    usernameEntry.place(x=40, y=265)
-
-    passwordlabel = Label(manframe, text='Create Password',
-                          bg='blue', font=('bold', 15))
-    passwordlabel.place(x=36, y=315)
-    passwordEntry = Entry(manframe, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
-                          bd=0, fg='black')
-    passwordEntry.insert(0, '')
-    passwordEntry.place(x=40, y=345)
-
-    userNumberlabel = Label(
-        manframe, text='Employee Number', bg='blue', font=('bold', 15))
-    userNumberlabel.place(x=36, y=395)
-    userNumberEntry = Entry(manframe, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
-                            bd=0, fg='black')
-    userNumberEntry.insert(0, '')
-    userNumberEntry.place(x=40, y=425)
-
-    userStatuslabel = Label(
-        manframe, text='Employee Postion', bg='blue', font=('bold', 15))
-    userStatuslabel.place(x=36, y=475)
-    userStatusEntry = Entry(manframe, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
-                            bd=0, fg='black')
-    userStatusEntry.insert(0, '')
-    userStatusEntry.place(x=40, y=505)
-
-    userStatuslabel = Label(
-        manframe, text='Employee Rights', bg='blue', font=('bold', 15),)
-    userStatuslabel.place(x=500, y=155)
-    userRights1 = Checkbutton(manframe, text='Management', font=('bold', 15), bg='blue',
-                              activebackground='blue')
-    userRights1.place(x=500, y=185)
-
-    userRights2 = Checkbutton(manframe, text='Supervisor', font=('bold', 15), bg='blue',
-                              activebackground='blue')
-    userRights2.place(x=500, y=215)
-
-    userRights3 = Checkbutton(manframe, text='staff', font=('bold', 15), bg='blue',
-                              activebackground='blue')
-    userRights3.place(x=500, y=245)
-
-    SubmitButton = Button(manframe, text='submite', font=('Arial Sans', 8, 'bold'), fg='white', cursor='hand2',
-                          bg='brown1', height=2, width=20, activebackground='brown1', activeforeground='white')
-    SubmitButton.place(x=550, y=575)
+    adminWindow.destroy()
+    import functions
 
 
 def data_wall():
