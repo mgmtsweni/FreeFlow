@@ -4,8 +4,6 @@ from tkinter import messagebox
 
 
 """functions"""
-
-
 def BreeSmall():
     """Cnr of Bree and Small"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
@@ -102,6 +100,7 @@ def index():
 
 
 def logOut():
+    messagebox.showinfo('info:', 'logout successful')
     adminWindow.destroy()
 
 

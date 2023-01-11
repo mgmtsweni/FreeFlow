@@ -52,7 +52,7 @@ class laneSide:
         self.east = east
 
     def side(self):
-        #Returns an array of the total number of cars in a lane
+        """Returns an array of the total number of cars in a lane"""
         lanes = [self.north, self.south, self.west, self.east]
         return lanes
 

@@ -2,7 +2,7 @@
 """Oparations of lights"""
 ##import RPi.GPIO as GPIO -- for RasberryPI
 from time import sleep
-from vehiclecontrol import *
+from classes import *
 from termcolor import colored
 import sys
 

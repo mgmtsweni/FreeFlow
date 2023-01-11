@@ -16,12 +16,14 @@ def clear():
     check2.set(0)
     check.set(0)
 
+
 def index():
     funcWindow.destroy()
     import admin
 
 
 def logOut():
+    messagebox.showinfo('info:', 'logout successful')
     funcWindow.destroy()
 
 
