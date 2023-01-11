@@ -16,14 +16,12 @@ def clear():
     check2.set(0)
     check.set(0)
 
-
 def index():
     funcWindow.destroy()
     import admin
 
 
 def logOut():
-    messagebox.showinfo('info:', 'logout successful')
     funcWindow.destroy()
 
 
@@ -36,24 +34,37 @@ def database():
     elif check == 0 or check1 == 0 or check2 == 0:
         messagebox.showerror('error:', 'Check user Postions')
     else:
-
         try:
-            con = sqlite3.connect('database/FreeFlow.db')
-            curs = con.cursor()
+            connection = sqlite3.connect('database/FreeFlow.db')
+            curs = connection.cursor()
         except:
             messagebox.showerror('Error','Database connection Error')
-   
+
     try:
-        curs.execute("""CREATE TABLE userdata (
-            id  int auto_increment primary key not null,
-            email varchar(50),
+        curs.execute("""CREATE TABLE IF NOT EXISTS userdata (
+            name varchar(50),
+            usernumber int(20),
             username varchar(50),
-            password int(10)
+            password varchar(20)
         )""")
     except: 
-        curs.execute('use userdata')
-        
-    messagebox.showinfo('Success:', 'All Good')
+        messagebox.showerror('Error','Database creattion Error')
+    
+    curs.execute('INSERT INTO userdata VALUES (:name, :usernumber, :username, :password)',
+                {
+                    'name': nameEntry.get(),
+                    'usernumber':userNumEntry.get(),
+                    'username':usernameEntry.get(),
+                    'password':passwordEntry.get()
+                })
+    messagebox.showinfo('Success','User Registered Successful')
+  
+
+    curs.execute('SELECT * FROM userdata')
+    myDB = curs.fetchall()
+    print(myDB)
+    connection.commit()
+    connection.close()
     clear()
         
 

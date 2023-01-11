@@ -2,8 +2,8 @@
 from numpy import *
 import cv2
 
-cascade_src = 'cars.xml'
-
+cascade_src = 'detection/weights/cars.xml'
+video = 'detection/videos/video1.avi'
 def detection(filename):
     rectangle = []
     cascade = cv2.CascadeClassifier(cascade_src)
@@ -27,9 +27,9 @@ def detection(filename):
         for (x, y, w, h) in cars:
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
         
-        i = 0
+        count = 0
         for value in cars:
-            i += 1
+            count += 1
         
         cv2.imshow("Results", frame)
     
@@ -37,23 +37,23 @@ def detection(filename):
             break
     
     vc.release()
-    return i
+    return count
 
 
 def imageDetect():
     
-    vehicle_cascade = cv2.CascadeClassifier('cars.xml')
-    img = cv2.imread('image.jpg')
+    vehicle_cascade = cv2.CascadeClassifier(cascade_src)
+    img = cv2.imread('detection/images/image.jpg')
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     vehicles = vehicle_cascade.detectMultiScale(gray, 1.1, 3)
     for (x, y, w, h) in vehicles:
         cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
 
-    i = 0
+    count = 0
     for value in vehicles:
-        i += 1
+        count += 1
 
     cv2.imshow('img', img)
     cv2.waitKey()
-    return i
+    return count

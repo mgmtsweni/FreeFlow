@@ -60,7 +60,7 @@ def recus(chooseSide):
             chooseSide[3] = chooseSide[3] - 1
         recus(chooseSide)
 """
-video = 'video1.avi'
+video = 'detection/videos/video1.avi'
 def mytest():
     index = detection(video)
     indi =  imageDetect()
