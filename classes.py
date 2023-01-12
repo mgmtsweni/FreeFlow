@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""function that returns the total time to change lights"""
+"""file for classes needed by the light oparator"""
 from time import sleep
 
 
@@ -10,23 +10,7 @@ class lanes:
     
     def count(self):
         return self.count
-        """
-        self.car = 4*car
-        self.bike = 3*bike
-        self.van = 5*van
-        self.bus = 6*bus
-        self.truck = 7*truck
-        self.man = 2*human
-            
-        def class(self):
-            type = [self.car, self.bike, self.man, self.van, self.bus, self.truck]
-                return type
-        
-        def classCount(self):
-            typecount = self.car + self.bike + self.man + self.van + self.bus + self.truck
-                return typecount
-        """
-
+ 
 class northlane(lanes):
     """inheritance of lanes"""
     pass
@@ -57,6 +41,7 @@ class laneSide:
         return lanes
 
 def countback(self):
+    """count down to determine the waiting time."""
     while (self.count > 0):
         print (self.count)
         self.count = self.count - 1
