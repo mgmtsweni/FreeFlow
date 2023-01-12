@@ -1,11 +1,32 @@
 #!/usr/bin/python3
+""" functions which handles management of the employees
+    handles also the viewing of the streets camars
+    to also launch the the app from this window
+"""
 from tkinter import *
 from tkinter import messagebox
+import sqlite3
+from vlc import *
 
 
 """functions"""
+
+
+def stop_media(event):
+    player.destroy()
+
+
 def launch():
-    messagebox.showinfo('info', 'Open terminal')
+    streetframe = Frame(adminframe, width=830, height=656, bg='blue')
+    streetframe.place(x=0, y=0)
+    player = Instance().media_player_new()
+    media = Instance().media_new('video2.mp4')
+    player.set_media(media)
+    player.video_set_scale(0.3)
+    my_vlc = player.play()
+
+    streetlabel = Label(adminframe, image=my_vlc, width=50, height=150)
+    streetlabel.place(x=900, y=800)
 
 
 def BreeSmall():
@@ -75,6 +96,7 @@ def JeppeSmall():
 
 
 def user_wall():
+    """function for the interface window"""
     userframe = Frame(adminframe, width=830, height=656, bg='blue')
     userframe.place(x=0, y=0)
     heading1 = Label(userframe, text='Interface', font=('bold', 25))
@@ -98,39 +120,106 @@ def user_wall():
 
 
 def man_wall():
+    """fnction for the management window"""
     adminWindow.destroy()
-    import functions
+    import mangement
 
 
 def data_wall():
+    """function for the data management window"""
     dataframe = Frame(adminframe, width=830, height=656, bg='blue')
     dataframe.place(x=0, y=0)
-    heading1 = Label(dataframe, text='data', font=('bold', 15))
+    heading1 = Label(dataframe, text='Data Center', font=('bold', 15))
     heading1.place(x=370, y=50)
+
+    employeedata = Button(dataframe, text='Emloyee data', bd=0, cursor='hand2', bg='NavajoWhite3', font=('Arial Sans', 12, 'bold'),
+                          activebackground='NavajoWhite3', activeforeground='brown1', command=lambda: employeelist())
+    employeedata.place(x=15, y=235)
+
+    employeedata = Button(dataframe, text='Street View', bd=0, cursor='hand2', bg='NavajoWhite3', font=('Arial Sans', 12, 'bold'),
+                          activebackground='NavajoWhite3', activeforeground='brown1', command=lambda: streetview())
+    employeedata.place(x=15, y=295)
+
+    option_street = Label(optionframe, text='', bg='NavajoWhite3')
+    option_street.place(x=5, y=455, width=5, height=30)
+
+    def employeelist():
+        listframe = Frame(dataframe, width=830, height=656, bg='blue')
+        listframe.place(x=0, y=0)
+        heading1 = Label(listframe, text='Employee list tab',
+                         font=('bold', 15))
+        heading1.place(x=370, y=50)
+
+        backlabel = Button(listframe, image=bckicon, bd=0, command=data_wall)
+        backlabel.place(x=50, y=50)
+
+        try:
+            connection = sqlite3.connect('database/FreeFlow.db')
+            cursor = connection.cursor()
+        except:
+            messagebox.showerror('Error', 'Database connection Error')
+
+        cursor.execute('SELECT *, oid FROM userdata')
+        records = cursor.fetchall()
+        print(records)
+
+        show_record = ''
+        for record in records:
+            show_record += str(record[0]) + '\n' + '\n'
+
+        print_list = Label(listframe, text=show_record,
+                           font=('bold', 15), fg='White', bg='blue')
+        print_list.place(x=50, y=150)
+
+        connection.commit()
+        connection.close()
+
+    def streetview():
+        streetframe = Frame(dataframe, width=830, height=656, bg='blue')
+        streetframe.place(x=0, y=0)
+        heading1 = Label(streetframe, text='Street Data', font=('bold', 15))
+        heading1.place(x=370, y=50)
+
+        streetEntry = Button(streetframe, text='Cnr of Bree and Small', bd=0, cursor='hand2', font=('Arial Sans', 12, 'bold'),
+                             activebackground='NavajoWhite3', activeforeground='brown1', command=BreeSmall)
+        streetEntry.place(x=36, y=210)
+        streetEntry = Button(streetframe, text='Cnr of Small And Jeppe', bd=0, cursor='hand2', font=('Arial Sans', 12, 'bold'),
+                             activebackground='NavajoWhite3', activeforeground='brown1', command=JeppeSmall)
+        streetEntry.place(x=36, y=260)
+        streetEntry = Button(streetframe, text='Cnr of Bree and Kruis', bd=0, cursor='hand2', font=('Arial Sans', 12, 'bold'),
+                             activebackground='NavajoWhite3', activeforeground='brown1', command=BreeKruis)
+        streetEntry.place(x=36, y=310)
+        streetEntry = Button(streetframe, text='Cnr of Kruis and Jeppe', bd=0, cursor='hand2', font=('Arial Sans', 12, 'bold'),
+                             activebackground='NavajoWhite3', activeforeground='brown1', command=JeppeKruis)
+        streetEntry.place(x=36, y=360)
 
 
 def delete_wall():
+    """function to close window after use"""
     for frame in adminframe.winfo_children():
         frame.destroy()
 
 
 def index():
+    """function to take you back to login screen"""
     adminWindow.destroy()
     import login
 
 
 def logOut():
-    messagebox.showinfo('info:', 'logout successful')
+    """function to close session"""
     adminWindow.destroy()
 
 
 def hide_indicator():
+    """function to change scroll indercator color"""
     option_user.config(bg='NavajoWhite3')
     option_man.config(bg='NavajoWhite3')
     option_data.config(bg='NavajoWhite3')
 
 
 def indicator(lb, page):
+    """function to only allow one indicator to show"""
     hide_indicator()
     lb.config(bg='brown1')
     delete_wall()
@@ -148,12 +237,17 @@ adminbg = PhotoImage(file='images/adminbg.png')
 videohold = PhotoImage(file='images/admin2.png')
 openeye = PhotoImage(file='images/openeye.png')
 icon = PhotoImage(file='images/myicon.png')
+bgdata = PhotoImage(file='images/bgData.png')
+bckicon = PhotoImage(file='images/bckicon.png')
+
 
 bglabel = Label(adminWindow, image=bgimage)
 bglabel.place(x=0, y=0)
 
 optionframe = Frame(adminWindow, width=350, height=656, bg='NavajoWhite3')
 optionframe.place(x=50, y=50)
+
+adminWindow.bind("<KeyPress-s>", lambda event: stop_media(event))
 
 adminframe = Frame(adminWindow, width=830, height=656, bg='white')
 adminframe.place(x=400, y=50)
