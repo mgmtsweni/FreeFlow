@@ -4,8 +4,12 @@ from tkinter import messagebox
 
 
 """functions"""
+def launch():
+    messagebox.showinfo('info', 'Open terminal')
+
+
 def BreeSmall():
-    """Cnr of Bree and Small"""
+    """Cnr of Bree and Smallfunction"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
 
@@ -13,12 +17,16 @@ def BreeSmall():
         streetframe, text='Cnr of Bree and Small', font=('bold', 25))
     heading2.place(x=280, y=80)
 
+    launchApp = Button(streetframe, text='launch', bd=0, cursor='hand2', bg='NavajoWhite3', font=('Arial Sans', 12, 'bold'),
+                       activebackground='NavajoWhite3', activeforeground='brown1', command=launch)
+    launchApp.place(x=385, y=555)
+
     streetlabel = Label(adminframe, image=videohold, width=250, height=250)
     streetlabel.place(x=300, y=200)
 
 
 def BreeKruis():
-    """Cnr of Small And Jeppe"""
+    """Cnr of Small And Jeppe function"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
 
@@ -29,9 +37,13 @@ def BreeKruis():
     streetlabel = Label(adminframe, image=videohold, width=250, height=250)
     streetlabel.place(x=300, y=200)
 
+    launchApp = Button(streetframe, text='launch', bd=0, cursor='hand2', bg='NavajoWhite3', font=('Arial Sans', 12, 'bold'),
+                       activebackground='NavajoWhite3', activeforeground='brown1', command=launch)
+    launchApp.place(x=385, y=555)
+
 
 def JeppeKruis():
-    """Cnr of Bree and Kruis"""
+    """Cnr of Bree and Kruis function"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
 
@@ -42,9 +54,13 @@ def JeppeKruis():
     streetlabel = Label(adminframe, image=videohold, width=250, height=250)
     streetlabel.place(x=300, y=200)
 
+    launchApp = Button(streetframe, text='launch', bd=0, cursor='hand2', bg='NavajoWhite3', font=('Arial Sans', 12, 'bold'),
+                       activebackground='NavajoWhite3', activeforeground='brown1', command=launch)
+    launchApp.place(x=385, y=555)
+
 
 def JeppeSmall():
-    """Cnr of Kruis and Jeppe"""
+    """Cnr of Kruis and Jeppe function"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
     heading2 = Label(
@@ -52,6 +68,10 @@ def JeppeSmall():
     heading2.place(x=280, y=80)
     streetlabel = Label(adminframe, image=videohold, width=250, height=250)
     streetlabel.place(x=300, y=200)
+
+    launchApp = Button(streetframe, text='launch', bd=0, cursor='hand2', bg='NavajoWhite3', font=('Arial Sans', 12, 'bold'),
+                       activebackground='NavajoWhite3', activeforeground='brown1', command=launch)
+    launchApp.place(x=385, y=555)
 
 
 def user_wall():
