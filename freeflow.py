@@ -5,13 +5,20 @@ from classes import *
 from termcolor import colored
 from Detect import *
 
-
+"""Detection using images"""
 N = imageDetect('detection/images/image.jpg')
 S = imageDetect('detection/images/image1.jpg')
 W = imageDetect('detection/images/image2.jpg')
 E = imageDetect('detection/images/image3.jpg')
-chooseSide = laneSide(N, S, W, E).side()
 
+"""Detection using video
+N = detection('detection/videos/vid0.mp4')
+S = detection('detection/videos/vid1.mp4')
+W = detection('detection/videos/video1.avi')
+E = detection('detection/videos/video2.mp4')
+"""
+
+chooseSide = laneSide(N, S, W, E).side()
 
 def countback(count):
     while (count > 0):

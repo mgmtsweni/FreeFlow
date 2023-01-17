@@ -7,33 +7,26 @@ from tkinter import *
 from tkinter import messagebox
 import sqlite3
 from vlc import *
-
+import runpy
 
 """functions"""
-
 
 def stop_media(event):
     player.destroy()
 
 
 def launch():
-    streetframe = Frame(adminframe, width=830, height=656, bg='blue')
-    streetframe.place(x=0, y=0)
-    player = Instance().media_player_new()
-    media = Instance().media_new('video2.mp4')
-    player.set_media(media)
-    player.video_set_scale(0.3)
-    my_vlc = player.play()
-
-    streetlabel = Label(adminframe, image=my_vlc, width=50, height=150)
-    streetlabel.place(x=900, y=800)
-
+    runpy.run_path('../lights.py')
+    
 
 def BreeSmall():
     """Cnr of Bree and Smallfunction"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
 
+    backlabel = Button(streetframe, image=bckicon, bd=0, command=user_wall)
+    backlabel.place(x=50, y=50)
+    
     heading2 = Label(
         streetframe, text='Cnr of Bree and Small', font=('bold', 25))
     heading2.place(x=280, y=80)
@@ -50,6 +43,9 @@ def BreeKruis():
     """Cnr of Small And Jeppe function"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
+    
+    backlabel = Button(streetframe, image=bckicon, bd=0, command=user_wall)
+    backlabel.place(x=50, y=50)
 
     heading2 = Label(
         streetframe, text='Cnr of Small And Jeppe', font=('bold', 25))
@@ -67,6 +63,9 @@ def JeppeKruis():
     """Cnr of Bree and Kruis function"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
+    
+    backlabel = Button(streetframe, image=bckicon, bd=0, command=user_wall)
+    backlabel.place(x=50, y=50)
 
     heading2 = Label(
         streetframe, text='Cnr of Bree and Kruis', font=('bold', 25))
@@ -84,6 +83,10 @@ def JeppeSmall():
     """Cnr of Kruis and Jeppe function"""
     streetframe = Frame(adminframe, width=830, height=656, bg='blue')
     streetframe.place(x=0, y=0)
+    
+    backlabel = Button(streetframe, image=bckicon, bd=0, command=user_wall)
+    backlabel.place(x=50, y=50)
+    
     heading2 = Label(
         streetframe, text='Cnr of Kruis and Jeppe', font=('bold', 25))
     heading2.place(x=280, y=80)
@@ -101,6 +104,7 @@ def user_wall():
     userframe.place(x=0, y=0)
     heading1 = Label(userframe, text='Interface', font=('bold', 25))
     heading1.place(x=370, y=50)
+    
 
     namelabel = Label(userframe, text='Intercections',
                       bg='blue', font=('bold', 15))
@@ -146,8 +150,7 @@ def data_wall():
     def employeelist():
         listframe = Frame(dataframe, width=830, height=656, bg='blue')
         listframe.place(x=0, y=0)
-        heading1 = Label(listframe, text='Employee list tab',
-                         font=('bold', 15))
+        heading1 = Label(listframe, text='Employee list tab', font=('bold', 15))
         heading1.place(x=370, y=50)
 
         backlabel = Button(listframe, image=bckicon, bd=0, command=data_wall)
@@ -167,8 +170,7 @@ def data_wall():
         for record in records:
             show_record += str(record[0]) + '\n' + '\n'
 
-        print_list = Label(listframe, text=show_record,
-                           font=('bold', 15), fg='White', bg='blue')
+        print_list = Label(listframe, text=show_record, font=('bold', 15), fg='White',bg='blue')
         print_list.place(x=50, y=150)
 
         connection.commit()
@@ -179,7 +181,10 @@ def data_wall():
         streetframe.place(x=0, y=0)
         heading1 = Label(streetframe, text='Street Data', font=('bold', 15))
         heading1.place(x=370, y=50)
-
+        
+        backlabel = Button(streetframe, image=bckicon, bd=0, command=data_wall)
+        backlabel.place(x=50, y=50)
+        
         streetEntry = Button(streetframe, text='Cnr of Bree and Small', bd=0, cursor='hand2', font=('Arial Sans', 12, 'bold'),
                              activebackground='NavajoWhite3', activeforeground='brown1', command=BreeSmall)
         streetEntry.place(x=36, y=210)

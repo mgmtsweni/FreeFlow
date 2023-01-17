@@ -2,7 +2,6 @@
 from tkinter import *
 from tkinter import messagebox
 import sqlite3
-#import pymysql
 
 
 """functions"""
@@ -17,18 +16,15 @@ def clear():
     check.set(0)
 
 def index():
-    """Refresh the window and go bCK TO admin window"""
     funcWindow.destroy()
     import admin
 
 
 def logOut():
-    """logout"""
     funcWindow.destroy()
 
 
 def database():
-    """Create Database"""
     if nameEntry.get() == '' or userNumEntry.get() == '' or \
             usernameEntry.get() == '' or passwordEntry.get() == '' or confirmPassEntry.get() == '':
         messagebox.showerror('error:', 'all field are required')
@@ -68,10 +64,16 @@ def database():
                     'password':passwordEntry.get()
                 })
         messagebox.showinfo('Success','User Registered Successful')
+
+
+    cursor.execute('SELECT * FROM userdata')
+    myDB = cursor.fetchall()
+    print(myDB)
     
     connection.commit()
     connection.close()
-    clear()    
+    clear()
+        
 
 """Initiallize App"""
 funcWindow = Tk()
@@ -137,6 +139,7 @@ confirmPassEntry = Entry(manframe, width=24, font=('Microsoft Yahei UI Light', 1
 confirmPassEntry.insert(0, '')
 confirmPassEntry.place(x=40, y=505)
 
+"""checkboxes"""
 check = IntVar()
 userStatuslabel = Label(
     manframe, text='Employee Rights', bg='blue', font=('bold', 15),)
