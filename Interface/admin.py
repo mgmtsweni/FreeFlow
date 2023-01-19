@@ -146,6 +146,7 @@ def data_wall():
 
     option_street = Label(optionframe, text='', bg='NavajoWhite3')
     option_street.place(x=5, y=455, width=5, height=30)
+    
 
     def employeelist():
         listframe = Frame(dataframe, width=830, height=656, bg='blue')
@@ -164,17 +165,138 @@ def data_wall():
 
         cursor.execute('SELECT *, oid FROM userdata')
         records = cursor.fetchall()
-        print(records)
+
 
         show_record = ''
         for record in records:
-            show_record += str(record[0]) + '\n' + '\n'
+            show_record += str(record[4]) + '\t' + str(record[0]) + '\t' + str(record[1]) + '\t' + str(record[2]) + '\n' + '\n'
 
         print_list = Label(listframe, text=show_record, font=('bold', 15), fg='White',bg='blue')
         print_list.place(x=50, y=150)
+        
+        
+        text = Label(listframe, text='Enter Employee ID', fg='brown1', font=('bold', 10))
+        text.place(x=80, y=550)
+        deleteBox = Entry(listframe, width=18, bd=2, fg='black')
+        deleteBox.place(x=240, y=550)
+        deleteButton = Button(listframe, text='delete', font=('Arial Sans', 8, 'bold'), fg='white', cursor='hand2',
+                      bg='brown1', height=1, width=15, activebackground='brown1', activeforeground='white',command=lambda: delete())
+        deleteButton.place(x=80, y=585)
 
-        connection.commit()
-        connection.close()
+        updateButton = Button(listframe, text='update', font=('Arial Sans', 8, 'bold'), fg='white', cursor='hand2',
+                      bg='brown1', height=1, width=15, activebackground='brown1', activeforeground='white',command=lambda: updates())
+        updateButton.place(x=240, y=585)
+        
+        
+        def delete():
+            cursor.execute("DELETE FROM userdata WHERE oid= " + deleteBox.get())
+            deleteBox.delete(0, END)
+                
+            connection.commit()
+            connection.close()
+
+        def updates():
+            update = Tk()
+            update.geometry('720x480+10+10')
+            update.resizable(0, 0)
+            update.title('tool')
+            bglabel = Label(update, bg='blue', width=720, height=480)
+            bglabel.place(x=0, y=0)
+            update.title('update center')
+            
+            try:
+                connection = sqlite3.connect('database/FreeFlow.db')
+                cursor = connection.cursor()
+            except:
+                messagebox.showerror('Error', 'Database connection Error')
+            
+            record_id = deleteBox.get()
+            cursor.execute('SELECT * FROM userdata WHERE oid = ' + record_id)
+            records = cursor.fetchall()
+            
+            global nameEntry
+            global userNumEntry
+            global usernameEntry
+            global passwordEntry
+            global confirmPassEntry
+            
+            namelabel = Label(update, text='Employee Name',
+                            bg='blue', font=('bold', 15))
+            namelabel.place(x=36, y=55)
+            nameEntry = Entry(update, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
+                            bd=0, fg='black')
+            nameEntry.place(x=40, y=85)
+
+            userNumlabel = Label(update, text='Employee number', bg='blue', font=('bold', 15))
+            userNumlabel.place(x=36, y=135)
+            userNumEntry = Entry(update, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
+                                bd=0, fg='black')
+            userNumEntry.place(x=40, y=165)
+
+            usernamelabel = Label(update, text='Create Username',
+                                bg='blue', font=('bold', 15))
+            usernamelabel.place(x=36, y=215)
+            usernameEntry = Entry(update, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
+                                bd=0, fg='black')
+            usernameEntry.place(x=40, y=245)
+
+            passwordlabel = Label(update, text='Create Password',
+                                bg='blue', font=('bold', 15))
+            passwordlabel.place(x=36, y=295)
+            passwordEntry = Entry(update, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
+                                bd=0, fg='black')
+
+            passwordEntry.place(x=40, y=325)
+
+            confirmPasslabel = Label(
+                update, text='Confirm Password', bg='blue', font=('bold', 15))
+            confirmPasslabel.place(x=36, y=375)
+            confirmPassEntry = Entry(update, width=24, font=('Microsoft Yahei UI Light', 13, 'bold'),
+                                    bd=0, fg='black')
+            confirmPassEntry.place(x=40, y=405)
+            
+            SubmitButton = Button(update, text='submite', font=('Arial Sans', 8, 'bold'), fg='white', cursor='hand2',
+                            bg='brown1', height=3, width=8, activebackground='brown1', activeforeground='white', command=lambda: edit())
+            SubmitButton.place(x=600, y=380)
+
+            closeButton = Button(update, text='close', font=('Arial Sans', 8, 'bold'), fg='white', cursor='hand2',
+                            bg='brown1', height=3, width=8, activebackground='brown1', activeforeground='white')
+            closeButton.place(x=500, y=380)
+            
+            
+            for record in records:
+                nameEntry.insert(0, record[0])
+                userNumEntry.insert(0, record[1])
+                usernameEntry.insert(0, record[2])
+                passwordEntry.insert(0, record[3])
+
+            def edit():
+                if  passwordEntry.get() != confirmPassEntry.get():
+                    messagebox.showerror('error:', 'passwords do not match')
+                else:
+                    try:
+                        connection = sqlite3.connect('database/FreeFlow.db')
+                        cursor = connection.cursor()
+                    except:
+                        messagebox.showerror('Error', 'Database connection Error')
+                
+                    record_id = deleteBox.get()
+                    cursor.execute("""UPDATE userdata SET
+                            name = :name,
+                            usernumber = :usernum,
+                            username = :username,
+                            password = :password
+                            WHERE oid = :oid""",
+                            {
+                            'name': nameEntry.get(),
+                            'usernum':userNumEntry.get(),
+                            'username':usernameEntry.get(),
+                            'password':passwordEntry.get(),
+                            'oid': record_id
+                            })
+                    messagebox.showinfo('success', 'succefully updated')
+                    connection.commit()
+                    connection.close()
 
     def streetview():
         streetframe = Frame(dataframe, width=830, height=656, bg='blue')
